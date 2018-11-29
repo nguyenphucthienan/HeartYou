@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button } from 'react-native-elements';
+
+import Slides from '../components/Slides';
+
+const SLIDE_DATA = [
+  { text: 'Welcome to Heart You', color: '#FF4081' },
+  { text: 'Let the world know more...', color: '#03A9F4' },
+  { text: '...about you ♡', color: '#FF4081' }
+];
 
 class WelcomeScreen extends Component {
+  constructor() {
+    super();
+    this.onSlidesComplete = this.onSlidesComplete.bind(this);
+  }
+
+  onSlidesComplete() {
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Button
-          raised
-          color="#FFFFFF"
-          backgroundColor="#FF4081"
-          title="Heart You"
-        />
-      </View>
+      <Slides data={SLIDE_DATA} buttonText="Start" onComplete={this.onSlidesComplete} />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  }
-});
 
 export default WelcomeScreen;

@@ -6,6 +6,8 @@ const AppNavigator = createStackNavigator({
   Home: {
     screen: WelcomeScreen
   }
+}, {
+  headerMode: 'none'
 });
 
 export default AppNavigator;
