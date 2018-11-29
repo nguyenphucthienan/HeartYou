@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Field, reduxForm, } from 'redux-form';
 import { Button } from 'react-native-elements';
 import axios from 'axios';
@@ -10,27 +10,40 @@ import { CHECK_USERNAME_URL } from '../../config/api';
 
 class RegisterForm extends Component {
   render() {
-    const { handleSubmit, onSubmit } = this.props;
+    const { handleSubmit, onSubmit, navigation } = this.props;
 
     return (
-      <ScrollView>
+      <View>
         <Field name="username" placeholder="Username" component={TextFieldInput} style={styles.inputFieldStyle} />
         <Field name="password" placeholder="Password" component={TextFieldInput} style={styles.inputFieldStyle} secureTextEntry />
         <Field name="passwordConfirm" placeholder="Confirm password" component={TextFieldInput} style={styles.inputFieldStyle} secureTextEntry />
         <Field name="firstName" placeholder="First name" component={TextFieldInput} style={styles.inputFieldStyle} />
         <Field name="lastName" placeholder="Last name" component={TextFieldInput} style={styles.inputFieldStyle} />
-        <Button
-          title="Register"
-          borderRadius={25}
-          fontSize={14}
-          fontWeight="bold"
-          fontFamily="monospace"
-          color="#FFF"
-          backgroundColor="#FF4081"
-          onPress={handleSubmit(onSubmit)}
-          containerViewStyle={styles.containerViewStyle}
-        />
-      </ScrollView>
+        <View style={styles.viewStyle}>
+          <Button
+            title="Register"
+            onPress={handleSubmit(onSubmit)}
+            borderRadius={25}
+            fontSize={14}
+            fontWeight="bold"
+            fontFamily="monospace"
+            color="#FFF"
+            backgroundColor="#26A69A"
+            containerViewStyle={styles.containerViewStyle}
+          />
+          <Button
+            title="Cancel"
+            onPress={() => navigation.goBack()}
+            borderRadius={25}
+            fontSize={14}
+            fontWeight="bold"
+            fontFamily="monospace"
+            color="#FFF"
+            backgroundColor="#1565C0"
+            containerViewStyle={styles.containerViewStyle}
+          />
+        </View>
+      </View>
     );
   }
 }
@@ -46,8 +59,13 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontFamily: 'monospace'
   },
+  viewStyle: {
+    marginHorizontal: 50
+  },
   containerViewStyle: {
     marginTop: 10,
+    borderWidth: 2,
+    borderColor: '#FFF',
     borderRadius: 25
   }
 });

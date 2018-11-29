@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import {
-  KeyboardAvoidingView, View, Text,
-  TouchableOpacity, ActivityIndicator, BackHandler,
-  ToastAndroid, ImageBackground, StyleSheet
+  KeyboardAvoidingView,
+  View,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  BackHandler,
+  ToastAndroid,
+  ImageBackground,
+  StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import { reset } from 'redux-form';
@@ -20,7 +26,7 @@ class LoginScreen extends Component {
   }
 
   async componentWillMount() {
-    BackHandler.addEventListener('hardwareBackPress', () => true);
+    // BackHandler.addEventListener('hardwareBackPress', () => true);
 
     const { loginUserFromStorageConnect } = this.props;
     await loginUserFromStorageConnect();
@@ -56,7 +62,7 @@ class LoginScreen extends Component {
       return (
         <View style={styles.loadingContainerStyle}>
           <ActivityIndicator size="large" />
-          <Text style={{ fontSize: 16 }}>Connecting to Heart You server...</Text>
+          <Text style={styles.connectingTextStyle}>Connecting to Heart You server...</Text>
         </View>
       );
     }
@@ -107,6 +113,9 @@ const styles = StyleSheet.create({
     marginVertical: 80,
     fontFamily: 'monospace',
     fontWeight: 'bold'
+  },
+  connectingTextStyle: {
+    fontSize: 16
   },
   registerTextStyle: {
     color: '#A7FFEB',
