@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { Provider } from 'react-redux';
 
-import AppNavigator from './navigators/AppNavigator';
+import AppNavigator from './src/navigators/AppNavigator';
 
-import store from './store';
+import store from './src/store';
 
 const AppContainer = createAppContainer(AppNavigator);
 
