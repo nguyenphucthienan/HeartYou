@@ -16,6 +16,7 @@ const AppNavigator = createSwitchNavigator({
     screen: MainDrawerNavigator
   }
 }, {
+  initialRouteName: 'LoginStack',
   headerMode: 'none'
 });
 

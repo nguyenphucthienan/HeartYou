@@ -12,7 +12,7 @@ const MainTabNavigator = createBottomTabNavigator({
     screen: QuestionStackNavigator
   }
 }, {
-  initialRouteName: 'NewsFeed',
+  initialRouteName: 'NewsFeed'
 });
 
 export default MainTabNavigator;
