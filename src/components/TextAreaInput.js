@@ -6,9 +6,9 @@ export default ({ input: { onChange, onBlur, ...restInput }, meta: { error, touc
   <View>
     <FormInput
       multiline
-      numberOfLines={4}
-      secureTextEntry={secureTextEntry}
+      numberOfLines={5}
       underlineColorAndroid={0}
+      secureTextEntry={secureTextEntry}
       inputStyle={styles.inputFieldStyle}
       onChangeText={onChange}
       onEndEditing={onBlur}
@@ -21,7 +21,7 @@ export default ({ input: { onChange, onBlur, ...restInput }, meta: { error, touc
 const styles = StyleSheet.create({
   inputFieldStyle: {
     borderWidth: 2,
-    borderColor: '#FF4081',
+    borderColor: '#03A9F4',
     backgroundColor: '#FFF',
     borderRadius: 5,
     paddingLeft: 5

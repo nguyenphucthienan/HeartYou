@@ -8,7 +8,6 @@ import TextFieldInput from '../TextFieldInput';
 class LoginForm extends Component {
   render() {
     const { handleSubmit, onSubmit } = this.props;
-
     return (
       <View>
         <Field name="username" placeholder="Username" component={TextFieldInput} style={styles.inputFieldStyle} />

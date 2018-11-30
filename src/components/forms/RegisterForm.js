@@ -11,7 +11,6 @@ import { CHECK_USERNAME_URL } from '../../config/api';
 class RegisterForm extends Component {
   render() {
     const { handleSubmit, onSubmit, navigation } = this.props;
-
     return (
       <View>
         <Field name="username" placeholder="Username" component={TextFieldInput} style={styles.inputFieldStyle} />

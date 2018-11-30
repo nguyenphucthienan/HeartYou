@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 import {
-  getUnansweredQuestionsUrl
+  getUnansweredQuestionsUrl,
+  getAnswerQuestionsUrl
 } from '../config/api';
 
 import {
@@ -36,5 +37,14 @@ export const getMoreUnansweredQuestions = (token, userId, pageNumber) => async (
     dispatch({ type: GET_MORE_UNANSWERED_QUESTIONS_SUCCEED, payload: response.data });
   } catch (err) {
     dispatch({ type: GET_MORE_UNANSWERED_QUESTIONS_FAIL });
+  }
+};
+
+export const answerQuestion = (token, questionId, answerText) => async (dispatch) => {
+  try {
+    const url = getAnswerQuestionsUrl(questionId);
+    await axios.post(url, { answerText }, { headers: { authorization: `Bearer ${token}` } });
+  } catch (err) {
+    //
   }
 };

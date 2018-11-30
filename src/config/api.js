@@ -12,3 +12,7 @@ export const MY_USER_INFO_URL = `${API_URL}/auth/me`;
 export const getUnansweredQuestionsUrl = (userId, pageNumber, pageSize) => (
   `${API_URL}/users/${userId}/unanswered-questions?pageNumber=${pageNumber}&pageSize=${pageSize}`
 );
+
+export const getAnswerQuestionsUrl = questionId => (
+  `${API_URL}/questions/${questionId}/answer`
+);
