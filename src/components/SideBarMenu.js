@@ -22,7 +22,7 @@ class SideBarMenu extends Component {
   async onLogout() {
     const { logoutUserConnect, navigation } = this.props;
     await logoutUserConnect();
-    navigation.navigate('LoginStack');
+    navigation.navigate('AuthStack');
   }
 
   renderMenu() {

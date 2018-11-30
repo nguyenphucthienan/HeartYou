@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 
-const LoginStackNavigator = createStackNavigator({
+const AuthStackNavigator = createStackNavigator({
   Login: {
     screen: LoginScreen
   },
@@ -14,4 +14,4 @@ const LoginStackNavigator = createStackNavigator({
   headerMode: 'none'
 });
 
-export default LoginStackNavigator;
+export default AuthStackNavigator;

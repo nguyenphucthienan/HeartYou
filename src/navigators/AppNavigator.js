@@ -2,21 +2,21 @@ import { createSwitchNavigator } from 'react-navigation';
 
 import WelcomeScreen from '../screens/WelcomeScreen';
 
-import LoginStackNavigator from './LoginStackNavigator';
+import AuthStackNavigator from './AuthStackNavigator';
 import MainDrawerNavigator from './MainDrawerNavigator';
 
 const AppNavigator = createSwitchNavigator({
   Home: {
     screen: WelcomeScreen
   },
-  LoginStack: {
-    screen: LoginStackNavigator
+  AuthStack: {
+    screen: AuthStackNavigator
   },
   MainDrawer: {
     screen: MainDrawerNavigator
   }
 }, {
-  initialRouteName: 'LoginStack',
+  initialRouteName: 'AuthStack',
   headerMode: 'none'
 });
 
