@@ -50,7 +50,7 @@ class LoginScreen extends Component {
 
       if (username) {
         clearForm();
-        navigation.navigate('Home');
+        navigation.navigate('MainDrawer');
       }
     }
   }
