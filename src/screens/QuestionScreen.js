@@ -63,7 +63,10 @@ class QuestionScreen extends Component {
             <Text>{`at ${new Date(question.createdAt).toLocaleString()}`}</Text>
           </View>
         )}
-        onPressRightIcon={() => navigation.navigate('Answer', { question })}
+        onPressRightIcon={() => navigation.navigate('Answer', {
+          question,
+          refresh: this.onRefresh
+        })}
       />
     );
   }

@@ -16,9 +16,11 @@ class AnswerScreen extends Component {
   async onSubmitForm(values) {
     const { token, navigation, answerQuestionConnect } = this.props;
     const question = navigation.getParam('question', null);
+    const refresh = navigation.getParam('refresh', null);
     const { answerBody } = values;
 
     await answerQuestionConnect(token, question._id, answerBody);
+    refresh();
     navigation.goBack();
   }
 
