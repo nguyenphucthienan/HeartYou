@@ -129,7 +129,7 @@ class SideBarMenu extends Component {
               keyExtractor={item => item.key}
             />
             <Button
-              title="Edit Info"
+              title="Edit"
               icon={{ name: 'pencil-square-o', type: 'font-awesome' }}
               onPress={() => navigation.navigate('EditInfo')}
               borderRadius={25}

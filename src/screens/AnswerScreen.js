@@ -17,9 +17,9 @@ class AnswerScreen extends Component {
     const { token, navigation, answerQuestionConnect } = this.props;
     const question = navigation.getParam('question', null);
     const refresh = navigation.getParam('refresh', null);
-    const { answerBody } = values;
+    const { answerText } = values;
 
-    await answerQuestionConnect(token, question._id, answerBody);
+    await answerQuestionConnect(token, question._id, answerText);
     refresh();
     navigation.goBack();
   }

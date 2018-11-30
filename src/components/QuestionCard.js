@@ -55,7 +55,6 @@ class QuestionCard extends Component {
         <View style={styles.topStyle}>
           <Text style={styles.questionTextStyle}>{questionText}</Text>
         </View>
-
         <View style={styles.bodyStyle}>
           <View style={styles.avatarStyle}>
             <Avatar
@@ -68,13 +67,11 @@ class QuestionCard extends Component {
             />
             <Text style={styles.usernameTextStyle}>{`@${username}`}</Text>
           </View>
-
           <View style={styles.textContainerStyle}>
             <Text style={styles.answerTextStyle}>{answerText}</Text>
             <Text style={styles.dateTextStyle}>{new Date(answeredAt).toLocaleString()}</Text>
           </View>
         </View>
-
         <View style={styles.bottomStyle}>
           <Icon
             name="heart"

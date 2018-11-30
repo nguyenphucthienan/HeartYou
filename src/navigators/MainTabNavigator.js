@@ -50,9 +50,12 @@ const MainTabNavigator = createBottomTabNavigator({
 }, {
   initialRouteName: 'NewsFeed',
   tabBarOptions: {
-    activeTintColor: '#03A9F4',
-    labelStyle: {
-      fontSize: 12,
+    showIcon: true,
+    showLabel: false,
+    activeTintColor: '#FFF',
+    inactiveTintColor: '#333',
+    style: {
+      backgroundColor: '#03A9F4'
     }
   }
 });

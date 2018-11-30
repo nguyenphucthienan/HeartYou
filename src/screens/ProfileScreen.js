@@ -208,7 +208,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   messageTextStyle: {
-    color: '#F44336'
+    color: '#F44336',
+    fontSize: 12
   }
 });
 
