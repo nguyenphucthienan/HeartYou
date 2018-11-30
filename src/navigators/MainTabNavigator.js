@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
 import NewsFeedScreen from '../screens/NewsFeedScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 import QuestionStackNavigator from './QuestionStackNavigator';
 
@@ -27,6 +28,19 @@ const MainTabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="question"
+          type="font-awesome"
+          color={tintColor}
+        />
+      )
+    })
+  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: () => ({
+      tabBarLabel: 'Profile',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          name="user"
           type="font-awesome"
           color={tintColor}
         />

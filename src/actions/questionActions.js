@@ -2,7 +2,9 @@ import axios from 'axios';
 
 import {
   getUnansweredQuestionsUrl,
-  getAnswerQuestionsUrl
+  getAnsweredQuestionsUrl,
+  getAnswerQuestionsUrl,
+  getHeartOrUnheartQuestionUrl
 } from '../config/api';
 
 import {
@@ -40,10 +42,41 @@ export const getMoreUnansweredQuestions = (token, userId, pageNumber) => async (
   }
 };
 
+export const getFirstAnsweredQuestions = (token, userId) => async (dispatch) => {
+  try {
+    const url = getAnsweredQuestionsUrl(userId, 1, DEFAULT_PAGE_SIZE);
+    const response = await axios.get(url, { headers: { authorization: `Bearer ${token}` } });
+
+    dispatch({ type: GET_FIRST_ANSWERED_QUESTIONS_SUCCEED, payload: response.data });
+  } catch (err) {
+    dispatch({ type: GET_FIRST_ANSWERED_QUESTIONS_FAIL });
+  }
+};
+
+export const getMoreAnsweredQuestions = (token, userId, pageNumber) => async (dispatch) => {
+  try {
+    const url = getAnsweredQuestionsUrl(userId, pageNumber, DEFAULT_PAGE_SIZE);
+    const response = await axios.get(url, { headers: { authorization: `Bearer ${token}` } });
+
+    dispatch({ type: GET_MORE_ANSWERED_QUESTIONS_SUCCEED, payload: response.data });
+  } catch (err) {
+    dispatch({ type: GET_MORE_ANSWERED_QUESTIONS_FAIL });
+  }
+};
+
 export const answerQuestion = (token, questionId, answerText) => async (dispatch) => {
   try {
     const url = getAnswerQuestionsUrl(questionId);
     await axios.post(url, { answerText }, { headers: { authorization: `Bearer ${token}` } });
+  } catch (err) {
+    //
+  }
+};
+
+export const heartOrUnheartQuestion = (token, questionId) => async (dispatch) => {
+  try {
+    const url = getHeartOrUnheartQuestionUrl(questionId);
+    await axios.post(url, null, { headers: { authorization: `Bearer ${token}` } });
   } catch (err) {
     //
   }

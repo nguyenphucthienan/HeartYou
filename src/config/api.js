@@ -13,6 +13,14 @@ export const getUnansweredQuestionsUrl = (userId, pageNumber, pageSize) => (
   `${API_URL}/users/${userId}/unanswered-questions?pageNumber=${pageNumber}&pageSize=${pageSize}`
 );
 
+export const getAnsweredQuestionsUrl = (userId, pageNumber, pageSize) => (
+  `${API_URL}/users/${userId}/answered-questions?pageNumber=${pageNumber}&pageSize=${pageSize}`
+);
+
 export const getAnswerQuestionsUrl = questionId => (
   `${API_URL}/questions/${questionId}/answer`
+);
+
+export const getHeartOrUnheartQuestionUrl = questionId => (
+  `${API_URL}/questions/${questionId}/heart/`
 );
