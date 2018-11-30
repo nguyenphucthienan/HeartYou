@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { ListItem } from 'react-native-elements';
 import { getFirstUnansweredQuestions, getMoreUnansweredQuestions } from '../actions';
 
+import HeartYouHeader from '../components/HeartYouHeader';
+
 class QuestionScreen extends Component {
   constructor() {
     super();
@@ -91,8 +93,10 @@ class QuestionScreen extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <View>
+        <HeartYouHeader navigation={navigation} />
         {this.renderUnansweredQuestions()}
       </View>
     );
