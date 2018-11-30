@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import HeartYouHeader from '../components/HeartYouHeader';
 
-class NewsFeedScreen extends Component {
+class FollowingScreen extends Component {
   render() {
     const { navigation } = this.props;
     return (
@@ -14,4 +14,4 @@ class NewsFeedScreen extends Component {
   }
 }
 
-export default NewsFeedScreen;
+export default FollowingScreen;

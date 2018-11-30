@@ -6,6 +6,7 @@ import NewsFeedScreen from '../screens/NewsFeedScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 import QuestionStackNavigator from './QuestionStackNavigator';
+import FolowingStackNavigator from './FolowingStackNavigator';
 
 const MainTabNavigator = createBottomTabNavigator({
   NewsFeed: {
@@ -41,6 +42,19 @@ const MainTabNavigator = createBottomTabNavigator({
       tabBarIcon: ({ tintColor }) => (
         <Icon
           name="user"
+          type="font-awesome"
+          color={tintColor}
+        />
+      )
+    })
+  },
+  FollowingAndSearch: {
+    screen: FolowingStackNavigator,
+    navigationOptions: () => ({
+      tabBarLabel: 'Profile',
+      tabBarIcon: ({ tintColor }) => (
+        <Icon
+          name="users"
           type="font-awesome"
           color={tintColor}
         />
