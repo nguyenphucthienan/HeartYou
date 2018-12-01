@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   titleStyle: {
     marginVertical: 50,
     fontSize: 40,
-    color: '#FF4081',
+    color: '#03A9F4',
     fontFamily: 'monospace',
     fontWeight: 'bold',
   },

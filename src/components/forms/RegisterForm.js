@@ -27,7 +27,7 @@ class RegisterForm extends Component {
             fontWeight="bold"
             fontFamily="monospace"
             color="#FFF"
-            backgroundColor="#26A69A"
+            backgroundColor="#FF4081"
             containerViewStyle={styles.containerViewStyle}
           />
           <Button
@@ -50,7 +50,7 @@ class RegisterForm extends Component {
 const styles = StyleSheet.create({
   inputFieldStyle: {
     borderWidth: 2,
-    borderColor: '#FF4081',
+    borderColor: '#03A9F4',
     borderRadius: 25,
     backgroundColor: '#FFF',
     color: '#000',

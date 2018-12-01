@@ -2,12 +2,17 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { FormInput, FormValidationMessage } from 'react-native-elements';
 
-export default ({ input: { onChange, onBlur, ...restInput }, meta: { error, touched }, secureTextEntry }) => (
+export default ({
+  input: { onChange, onBlur, ...restInput },
+  meta: { error, touched },
+  secureTextEntry, placeholder
+}) => (
   <View>
     <FormInput
       multiline
       numberOfLines={5}
       underlineColorAndroid={0}
+      placeholder={placeholder}
       secureTextEntry={secureTextEntry}
       inputStyle={styles.inputFieldStyle}
       onChangeText={onChange}

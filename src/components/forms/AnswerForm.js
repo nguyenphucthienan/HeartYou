@@ -14,12 +14,12 @@ class AnswerForm extends Component {
         <Field name="answerText" component={TextAreaInput} />
         <Button
           title="Answer"
-          borderRadius={4}
+          borderRadius={25}
           fontSize={14}
           fontWeight="bold"
           fontFamily="monospace"
           color="#FFF"
-          backgroundColor="#03A9F4"
+          backgroundColor="#FF4081"
           onPress={handleSubmit(onSubmit)}
           containerViewStyle={styles.containerViewStyle}
         />
@@ -30,7 +30,10 @@ class AnswerForm extends Component {
 
 const styles = StyleSheet.create({
   containerViewStyle: {
-    marginTop: 10
+    marginTop: 10,
+    borderWidth: 2,
+    borderColor: '#FFF',
+    borderRadius: 25
   }
 });
 

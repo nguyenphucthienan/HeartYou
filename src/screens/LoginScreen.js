@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   registerTextStyle: {
-    color: '#A7FFEB',
+    color: '#FFF',
     fontFamily: 'monospace',
     marginTop: 15
   },
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     marginVertical: 15
   },
   googleLoginTextStyle: {
-    color: '#A7FFEB',
+    color: '#FFF',
     fontFamily: 'monospace'
   },
   loadingContainerStyle: {

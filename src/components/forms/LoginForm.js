@@ -21,7 +21,7 @@ class LoginForm extends Component {
             fontWeight="bold"
             fontFamily="monospace"
             color="#FFF"
-            backgroundColor="#26A69A"
+            backgroundColor="#FF4081"
             containerViewStyle={styles.containerViewStyle}
           />
         </View>

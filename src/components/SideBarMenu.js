@@ -136,7 +136,7 @@ class SideBarMenu extends Component {
               fontSize={14}
               fontWeight="bold"
               fontFamily="monospace"
-              backgroundColor="#03A9F4"
+              backgroundColor="#FF4081"
               containerViewStyle={styles.containerViewStyle}
             />
             <Button
@@ -147,7 +147,7 @@ class SideBarMenu extends Component {
               fontSize={14}
               fontWeight="bold"
               fontFamily="monospace"
-              backgroundColor="#03A9F4"
+              backgroundColor="#1565C0"
               containerViewStyle={styles.containerViewStyle}
             />
           </View>

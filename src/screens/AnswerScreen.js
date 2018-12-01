@@ -46,7 +46,7 @@ class AnswerScreen extends Component {
         <HeartYouHeader leftComponent={this.renderLeftComponent()} navigation={navigation} />
         <View style={styles.containerStyle}>
           <Text style={styles.titleStyle}>Answer</Text>
-          <Text style={styles.questionBodyStyle}>
+          <Text style={styles.questionTextStyle}>
             {question.questionText}
           </Text>
           <AnswerForm onSubmit={this.onSubmitForm} />
@@ -63,9 +63,10 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
     fontSize: 40,
-    color: '#03A9F4'
+    color: '#FF4081'
   },
-  questionBodyStyle: {
+  questionTextStyle: {
+    fontWeight: 'bold',
     marginLeft: 10,
     marginRight: 10
   }
