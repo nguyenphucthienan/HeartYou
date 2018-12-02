@@ -66,17 +66,20 @@ class UserScreen extends Component {
     const { auth: { token }, navigation } = this.props;
     const user = navigation.getParam('user', null);
 
-    const { pagination: { pageNumber, pageSize }, answeredQuestions } = this.state;
-    const url = getAnsweredQuestionsUrl(user._id, pageNumber + 1, pageSize);
-    const response = await axios.get(url, { headers: { authorization: `Bearer ${token}` } });
+    const { pagination: { pageNumber, pageSize, totalPages }, answeredQuestions } = this.state;
 
-    this.setState({
-      pagination: response.data.pagination,
-      answeredQuestions: [
-        ...answeredQuestions,
-        ...response.data
-      ]
-    });
+    if (pageNumber < totalPages) {
+      const url = getAnsweredQuestionsUrl(user._id, pageNumber + 1, pageSize);
+      const response = await axios.get(url, { headers: { authorization: `Bearer ${token}` } });
+
+      this.setState({
+        pagination: response.data.pagination,
+        answeredQuestions: [
+          ...answeredQuestions,
+          ...response.data.items
+        ]
+      });
+    }
   }
 
   onRefresh() {
@@ -205,7 +208,7 @@ class UserScreen extends Component {
         onRefresh={this.onRefresh}
         keyExtractor={item => item._id}
         ListHeaderComponent={this.renderHeader()}
-        contentContainerStyle={{ alignItems: 'center', paddingBottom: 75 }}
+        contentContainerStyle={styles.contentContainerStyle}
       />
     );
   }
@@ -237,6 +240,9 @@ const styles = StyleSheet.create({
   },
   messageTextStyle: {
     color: '#F44336'
+  },
+  contentContainerStyle: {
+    paddingBottom: 75
   }
 });
 

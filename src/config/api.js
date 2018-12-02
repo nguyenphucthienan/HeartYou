@@ -8,6 +8,7 @@ export const REGISTER_URL = `${API_URL}/auth/register`;
 export const CHECK_USERNAME_URL = `${API_URL}/auth/check-username`;
 export const LOGIN_URL = `${API_URL}/auth/login`;
 export const MY_USER_INFO_URL = `${API_URL}/auth/me`;
+
 export const ASK_QUESTION_URL = `${API_URL}/questions`;
 
 export const getUserInfoUrl = userId => `${API_URL}/users/${userId}`;
