@@ -239,7 +239,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   messageTextStyle: {
-    color: '#F44336'
+    color: '#FF4081',
+    fontSize: 12
   },
   contentContainerStyle: {
     paddingBottom: 75

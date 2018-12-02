@@ -67,9 +67,11 @@ export const getMoreAnsweredQuestions = (token, userId, pageNumber) => async (di
 
 export const askQuestion = (token, answerer, questionText) => async (dispatch) => {
   try {
-    await axios.post(ASK_QUESTION_URL,
+    await axios.post(
+      ASK_QUESTION_URL,
       { answerer, questionText },
-      { headers: { authorization: `Bearer ${token}` } });
+      { headers: { authorization: `Bearer ${token}` } }
+    );
   } catch (err) {
     //
   }
