@@ -46,6 +46,13 @@ class UserScreen extends Component {
     // TODO: Check follow or not
   }
 
+  async componentWillReceiveProps(nextProps) {
+    const isRefresh = nextProps.navigation.getParam('isRefresh', false);
+    if (isRefresh) {
+      this.onRefresh();
+    }
+  }
+
   async getFirstBatch() {
     await this.setState({ isLoading: true });
 

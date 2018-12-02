@@ -17,10 +17,10 @@ class QuestionCard extends Component {
   }
 
   onAvatarPress(user) {
-    // const { navigation } = this.props;
-    // if (navigation) {
-    //   return () => navigation.navigate('User', { user });
-    // }
+    const { navigation } = this.props;
+    if (navigation) {
+      return () => navigation.navigate('User', { user, isRefresh: true });
+    }
 
     return () => { };
   }
