@@ -17,13 +17,6 @@ class QuestionCard extends Component {
   }
 
   onAvatarPress(user) {
-    // Check current user
-
-    const { navigation } = this.props;
-    if (navigation) {
-      return () => navigation.navigate('User', { user, isRefresh: true });
-    }
-
     return () => { };
   }
 
@@ -151,7 +144,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontStyle: 'italic',
     fontWeight: '200',
-    color: '#DDD',
+    color: '#999',
     marginTop: 2
   }
 });

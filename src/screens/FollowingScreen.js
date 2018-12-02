@@ -86,6 +86,7 @@ class FollowingScreen extends Component {
           />
         )}
         title={`@${username}`}
+        titleStyle={styles.titleStyle}
         subtitle={`${firstName} ${lastName}`}
         subtitleStyle={styles.subtitleStyle}
         rightIcon={(
@@ -136,8 +137,13 @@ class FollowingScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  titleStyle: {
+    color: '#000',
+    fontSize: 14
+  },
   subtitleStyle: {
     color: '#000',
+    fontSize: 12,
     fontWeight: 'bold'
   },
   contentContainerStyle: {

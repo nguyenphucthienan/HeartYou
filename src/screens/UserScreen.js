@@ -41,15 +41,16 @@ class UserScreen extends Component {
   }
 
   async componentWillMount() {
+    this.checkFollow();
     await this.getFirstBatch();
-
-    // TODO: Check follow or not
   }
 
-  async componentWillReceiveProps(nextProps) {
-    const isRefresh = nextProps.navigation.getParam('isRefresh', false);
-    if (isRefresh) {
-      this.onRefresh();
+  checkFollow() {
+    const { auth: { following }, navigation } = this.props;
+    const user = navigation.getParam('user', null);
+
+    if (following.includes(user._id)) {
+      this.setState({ isFollowed: true });
     }
   }
 
