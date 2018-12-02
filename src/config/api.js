@@ -24,3 +24,13 @@ export const getAnswerQuestionsUrl = questionId => (
 export const getHeartOrUnheartQuestionUrl = questionId => (
   `${API_URL}/questions/${questionId}/heart/`
 );
+
+export const getFollowingListUrl = (userId, pageNumber, pageSize) => (
+  `${API_URL}/users/${userId}/following?pageNumber=${pageNumber}&pageSize=${pageSize}`
+);
+
+export const getFollowerListUrl = (userId, pageNumber, pageSize) => (
+  `${API_URL}/users/${userId}/followers?pageNumber=${pageNumber}&pageSize=${pageSize}`
+);
+
+export const getFollowOrUnfollowUrl = userId => `${API_URL}/users/${userId}/follow/`;
