@@ -31,7 +31,6 @@ export const loginUser = (username, password) => async (dispatch) => {
     await AsyncStorage.removeItem('token');
     await AsyncStorage.setItem('token', token);
 
-    ToastAndroid.show('Login successfully!', ToastAndroid.LONG);
     dispatch({ type: LOGIN_USER_SUCCEED, payload: token });
   } catch (err) {
     ToastAndroid.show('Incorrect username and/or password. Please try again!', ToastAndroid.SHORT);

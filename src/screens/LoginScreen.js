@@ -13,7 +13,12 @@ import {
 import { connect } from 'react-redux';
 import { reset } from 'redux-form';
 import { Icon } from 'react-native-elements';
-import { loginUser, loginUserFromStorage, getMyUserInfo } from '../actions';
+import {
+  loginUser,
+  loginUserFromStorage,
+  getMyUserInfo,
+  logoutUser
+} from '../actions';
 
 import LoginForm from '../components/forms/LoginForm';
 
@@ -42,7 +47,12 @@ class LoginScreen extends Component {
   }
 
   async componentWillReceiveProps(nextProps) {
-    const { getMyUserInfoConnect, clearForm, navigation } = this.props;
+    const {
+      getMyUserInfoConnect,
+      logoutUserConnect,
+      clearForm,
+      navigation
+    } = this.props;
 
     if (nextProps.token) {
       await getMyUserInfoConnect(nextProps.token);
@@ -51,6 +61,8 @@ class LoginScreen extends Component {
       if (username) {
         clearForm();
         navigation.navigate('MainDrawer');
+      } else {
+        await logoutUserConnect();
       }
     }
   }
@@ -151,6 +163,7 @@ const mapDispatchToProps = dispatch => ({
   loginUserConnect: (username, password) => dispatch(loginUser(username, password)),
   loginUserFromStorageConnect: () => dispatch(loginUserFromStorage()),
   getMyUserInfoConnect: token => dispatch(getMyUserInfo(token)),
+  logoutUserConnect: () => dispatch(logoutUser()),
   clearForm: () => dispatch(reset('login'))
 });
 
