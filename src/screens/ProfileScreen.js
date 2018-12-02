@@ -193,7 +193,10 @@ const styles = StyleSheet.create({
     height: 10
   },
   editButtonContainerViewStyle: {
-    marginTop: 10
+    marginTop: 10,
+    borderWidth: 0,
+    borderColor: '#FFF',
+    borderRadius: 25
   },
   userContainerStyle: {
     alignItems: 'center',

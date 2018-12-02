@@ -155,35 +155,39 @@ class UserScreen extends Component {
             activeOpacity={0.7}
             containerStyle={{ marginTop: 20 }}
           />
-          <Text style={{ fontSize: 12 }}>{`@${username}`}</Text>
-          <Text style={{ fontWeight: 'bold' }}>{`${firstName} ${lastName}`}</Text>
-          <Button
-            title={isFollowed ? 'Unfollow' : 'Follow'}
-            buttonStyle={{ width: 100, height: 10 }}
-            onPress={this.followOrUnfollowUser}
-            borderRadius={25}
-            fontSize={11}
-            backgroundColor="#000000"
-            icon={isFollowed ? { name: 'user-unfollow', type: 'simple-line-icon' } : { name: 'user-follow', type: 'simple-line-icon' }}
-            containerViewStyle={{ marginTop: 10, marginBottom: 5 }}
-          />
-          <Button
-            title="Ask me anything"
-            buttonStyle={{ width: 200, height: 35 }}
-            fontSize={15}
-            borderRadius={4}
-            backgroundColor="#FF5722"
-            onPress={() => navigation.navigate('Ask', { user })}
-            containerViewStyle={{ marginTop: 10, marginBottom: 5 }}
-            rightIcon={{ name: 'sentiment-very-satisfied', type: 'material-icons' }}
-          />
+          <View style={styles.userContainerStyle}>
+            <Text>{`@${username}`}</Text>
+            <Text style={styles.textBoldStyle}>{`${firstName} ${lastName}`}</Text>
+            <Button
+              title={isFollowed ? 'Unfollow' : 'Follow'}
+              buttonStyle={{ width: 100, height: 10 }}
+              onPress={this.followOrUnfollowUser}
+              borderRadius={25}
+              fontSize={11}
+              backgroundColor="#000"
+              icon={isFollowed ? { name: 'user-unfollow', type: 'simple-line-icon' } : { name: 'user-follow', type: 'simple-line-icon' }}
+              containerViewStyle={styles.containerViewStyle}
+            />
+            <Button
+              title="Ask me anything"
+              buttonStyle={styles.askButtonStyle}
+              borderRadius={25}
+              fontSize={14}
+              fontFamily="monospace"
+              color="#FFF"
+              backgroundColor="#FF4081"
+              onPress={() => navigation.navigate('Ask', { user })}
+              rightIcon={{ name: 'sentiment-very-satisfied', type: 'material-icons' }}
+              containerViewStyle={styles.containerViewStyle}
+            />
+          </View>
         </ImageBackground>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <View style={styles.infoContainerStyle}>
           <Button
             title={createdAt ? `Joined: ${new Date(createdAt).toDateString()}` : 'Joined:}'}
             icon={{ name: 'timelapse', type: 'material-community', color: '#2196F3' }}
             onPress={() => { }}
-            backgroundColor="#FFFFFF"
+            backgroundColor="#FFF"
             color="#757575"
             fontSize={12}
           />
@@ -191,7 +195,7 @@ class UserScreen extends Component {
             title={following ? `Following: ${following.length}` : 'Following: 0'}
             icon={{ name: 'group', type: 'material-icons', color: '#2196F3' }}
             onPress={() => { }}
-            backgroundColor="#FFFFFF"
+            backgroundColor="#FFF"
             color="#757575"
             fontSize={12}
           />
@@ -247,6 +251,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 15
   },
+  textBoldStyle: {
+    fontWeight: 'bold'
+  },
+  askButtonStyle: {
+    width: 200,
+    height: 35
+  },
   messageContainerStyle: {
     alignItems: 'center',
     marginBottom: 10
@@ -255,8 +266,23 @@ const styles = StyleSheet.create({
     color: '#FF4081',
     fontSize: 12
   },
+  userContainerStyle: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 3
+  },
+  infoContainerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
   contentContainerStyle: {
     paddingBottom: 75
+  },
+  containerViewStyle: {
+    marginTop: 10,
+    borderWidth: 0,
+    borderColor: '#FFF',
+    borderRadius: 25
   }
 });
 

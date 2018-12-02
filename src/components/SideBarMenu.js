@@ -134,7 +134,6 @@ class SideBarMenu extends Component {
               onPress={() => navigation.navigate('EditInfo')}
               borderRadius={25}
               fontSize={14}
-              fontWeight="bold"
               fontFamily="monospace"
               backgroundColor="#FF4081"
               containerViewStyle={styles.containerViewStyle}
@@ -145,7 +144,6 @@ class SideBarMenu extends Component {
               onPress={this.onLogout}
               borderRadius={25}
               fontSize={14}
-              fontWeight="bold"
               fontFamily="monospace"
               backgroundColor="#1565C0"
               containerViewStyle={styles.containerViewStyle}
@@ -198,8 +196,8 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   containerViewStyle: {
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 30,
+    marginRight: 30,
     marginBottom: 15
   }
 });

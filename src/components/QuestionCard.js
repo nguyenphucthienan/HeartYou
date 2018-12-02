@@ -17,6 +17,8 @@ class QuestionCard extends Component {
   }
 
   onAvatarPress(user) {
+    // Check current user
+
     const { navigation } = this.props;
     if (navigation) {
       return () => navigation.navigate('User', { user, isRefresh: true });

@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   titleStyle: {
-    fontSize: 40,
+    fontSize: 35,
+    fontFamily: 'monospace',
     color: '#FF4081'
   },
   questionTextStyle: {

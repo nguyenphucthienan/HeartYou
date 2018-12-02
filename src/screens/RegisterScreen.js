@@ -30,7 +30,6 @@ class RegisterScreen extends Component {
 
   render() {
     const { navigation } = this.props;
-
     return (
       <ImageBackground source={background} style={styles.imageBackgroundStyle}>
         <ScrollView contentContainerStyle={styles.contentContainerStyle}>
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: '#03A9F4',
     fontFamily: 'monospace',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   containerViewStyle: {
     marginTop: 15
