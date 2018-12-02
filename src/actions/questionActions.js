@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+  ASK_QUESTION_URL,
   getUnansweredQuestionsUrl,
   getAnsweredQuestionsUrl,
   getAnswerQuestionsUrl,
@@ -61,6 +62,16 @@ export const getMoreAnsweredQuestions = (token, userId, pageNumber) => async (di
     dispatch({ type: GET_MORE_ANSWERED_QUESTIONS_SUCCEED, payload: response.data });
   } catch (err) {
     dispatch({ type: GET_MORE_ANSWERED_QUESTIONS_FAIL });
+  }
+};
+
+export const askQuestion = (token, answerer, questionText) => async (dispatch) => {
+  try {
+    await axios.post(ASK_QUESTION_URL,
+      { answerer, questionText },
+      { headers: { authorization: `Bearer ${token}` } });
+  } catch (err) {
+    //
   }
 };
 

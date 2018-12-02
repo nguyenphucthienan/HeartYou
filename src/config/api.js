@@ -8,6 +8,7 @@ export const REGISTER_URL = `${API_URL}/auth/register`;
 export const CHECK_USERNAME_URL = `${API_URL}/auth/check-username`;
 export const LOGIN_URL = `${API_URL}/auth/login`;
 export const MY_USER_INFO_URL = `${API_URL}/auth/me`;
+export const ASK_QUESTION_URL = `${API_URL}/questions`;
 
 export const getUserInfoUrl = userId => `${API_URL}/users/${userId}`;
 
@@ -35,4 +36,6 @@ export const getFollowerListUrl = (userId, pageNumber, pageSize) => (
   `${API_URL}/users/${userId}/followers?pageNumber=${pageNumber}&pageSize=${pageSize}`
 );
 
-export const getFollowOrUnfollowUrl = userId => `${API_URL}/users/${userId}/follow/`;
+export const getFollowOrUnfollowUrl = userId => (
+  `${API_URL}/users/${userId}/follow/`
+);
