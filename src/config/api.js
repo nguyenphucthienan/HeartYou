@@ -14,6 +14,10 @@ export const ASK_QUESTION_URL = `${API_URL}/questions`;
 
 export const getUserInfoUrl = userId => `${API_URL}/users/${userId}`;
 
+export const getNewsFeedUrl = (userId, pageNumber, pageSize) => (
+  `${API_URL}/users/${userId}/news-feed?pageNumber=${pageNumber}&pageSize=${pageSize}`
+);
+
 export const getUnansweredQuestionsUrl = (userId, pageNumber, pageSize) => (
   `${API_URL}/users/${userId}/unanswered-questions?pageNumber=${pageNumber}&pageSize=${pageSize}`
 );

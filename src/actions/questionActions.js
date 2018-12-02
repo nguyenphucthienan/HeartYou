@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   ASK_QUESTION_URL,
+  getNewsFeedUrl,
   getUnansweredQuestionsUrl,
   getAnsweredQuestionsUrl,
   getAnswerQuestionsUrl,
@@ -9,6 +10,10 @@ import {
 } from '../config/api';
 
 import {
+  GET_FIRST_NEWS_FEED_SUCCEED,
+  GET_FIRST_NEWS_FEED_FAIL,
+  GET_MORE_NEWS_FEED_SUCCEED,
+  GET_MORE_NEWS_FEED_FAIL,
   GET_FIRST_UNANSWERED_QUESTIONS_SUCCEED,
   GET_FIRST_UNANSWERED_QUESTIONS_FAIL,
   GET_MORE_UNANSWERED_QUESTIONS_SUCCEED,
@@ -20,6 +25,28 @@ import {
 } from './types';
 
 const DEFAULT_PAGE_SIZE = 10;
+
+export const getFirstNewsFeed = (token, userId) => async (dispatch) => {
+  try {
+    const url = getNewsFeedUrl(userId, 1, DEFAULT_PAGE_SIZE);
+    const response = await axios.get(url, { headers: { authorization: `Bearer ${token}` } });
+
+    dispatch({ type: GET_FIRST_NEWS_FEED_SUCCEED, payload: response.data });
+  } catch (err) {
+    dispatch({ type: GET_FIRST_NEWS_FEED_FAIL });
+  }
+};
+
+export const getMoreNewsFeed = (token, userId, pageNumber) => async (dispatch) => {
+  try {
+    const url = getNewsFeedUrl(userId, pageNumber, DEFAULT_PAGE_SIZE);
+    const response = await axios.get(url, { headers: { authorization: `Bearer ${token}` } });
+
+    dispatch({ type: GET_MORE_NEWS_FEED_SUCCEED, payload: response.data });
+  } catch (err) {
+    dispatch({ type: GET_MORE_NEWS_FEED_FAIL });
+  }
+};
 
 export const getFirstUnansweredQuestions = (token, userId) => async (dispatch) => {
   try {
