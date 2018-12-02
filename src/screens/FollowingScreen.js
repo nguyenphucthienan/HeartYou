@@ -62,7 +62,6 @@ class FollowingScreen extends Component {
     const { auth: { token }, getMyUserInfoConnect, followOrUnfollowUserConnect } = this.props;
     await followOrUnfollowUserConnect(token, userId);
     await getMyUserInfoConnect(token);
-    this.onRefresh();
   }
 
   renderItem(user) {
@@ -82,7 +81,7 @@ class FollowingScreen extends Component {
             rounded
             source={photoUrl ? { uri: photoUrl } : null}
             title={photoUrl ? '' : (username && username.toUpperCase().slice(0, 1))}
-            onPress={() => navigation.navigate('User', { user })}
+            onPress={() => navigation.navigate('User', { user, refresh: this.onRefresh })}
             activeOpacity={0.7}
           />
         )}

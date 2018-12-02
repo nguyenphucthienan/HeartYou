@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   containerViewStyle: {
-    marginTop: 10,
+    paddingHorizontal: 60,
     borderWidth: 2,
     borderColor: '#FFF',
     borderRadius: 25

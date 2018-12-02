@@ -97,8 +97,14 @@ class UserScreen extends Component {
 
     this.setState({ isFollowed: !isFollowed });
     const user = navigation.getParam('user', null);
+    const refresh = navigation.getParam('refresh', null);
+
     await followOrUnfollowUserConnect(token, user._id);
     await getMyUserInfoConnect(token);
+
+    if (refresh) {
+      refresh();
+    }
   }
 
   renderLeftComponent() {

@@ -30,7 +30,7 @@ class AskForm extends Component {
 
 const styles = StyleSheet.create({
   containerViewStyle: {
-    marginTop: 10,
+    paddingHorizontal: 60,
     borderWidth: 2,
     borderColor: '#FFF',
     borderRadius: 25

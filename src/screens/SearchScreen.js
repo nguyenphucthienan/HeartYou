@@ -72,7 +72,7 @@ class SearchScreen extends Component {
           title={photoUrl ? '' : (username && username.toUpperCase().slice(0, 1))}
           onPress={() => navigation.navigate('User', { user })}
           activeOpacity={0.7}
-          containerStyle={{ marginLeft: 20 }}
+          containerStyle={styles.avatarContainerStyle}
         />
         <View style={styles.infoStyle}>
           <Text>{`@${username}`}</Text>
@@ -90,7 +90,7 @@ class SearchScreen extends Component {
         data={foundUsers}
         renderItem={({ item }) => this.renderUserCard(item)}
         keyExtractor={item => item._id}
-        contentContainerStyle={{ paddingTop: 20, paddingBottom: 70 }}
+        contentContainerStyle={styles.contentContainerStyle}
       />
     );
   }
@@ -131,9 +131,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  avatarContainerStyle: {
+    marginLeft: 20
+  },
   messageTextStyle: {
     color: '#FF4081',
     fontSize: 12
+  },
+  contentContainerStyle: {
+    paddingTop: 20,
+    paddingBottom: 70
   }
 });
 

@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     color: '#000',
     paddingHorizontal: 20,
-    marginTop: 5,
     fontFamily: 'monospace'
   },
   viewStyle: {
