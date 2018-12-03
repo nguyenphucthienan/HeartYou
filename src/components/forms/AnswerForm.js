@@ -1,17 +1,47 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
-import { FormLabel, Button } from 'react-native-elements';
+import { FormLabel, Button, Icon } from 'react-native-elements';
 
 import TextAreaInput from '../TextAreaInput';
+import RecordModal from '../RecordModal';
 
 class AnswerForm extends Component {
+  constructor() {
+    super();
+    this.state = { isModalVisible: false };
+    this.onModalOk = this.onModalOk.bind(this);
+    this.onModalCancel = this.onModalCancel.bind(this);
+  }
+
+  onModalOk(audioUrl) {
+    const { change } = this.props;
+    change('audioUrl', audioUrl);
+    this.setState({ isModalVisible: false });
+  }
+
+  onModalCancel() {
+    this.setState({ isModalVisible: false });
+  }
+
   render() {
     const { handleSubmit, onSubmit } = this.props;
+    const { isModalVisible } = this.state;
+
     return (
       <View>
         <FormLabel>Enter your answer</FormLabel>
         <Field name="answerText" component={TextAreaInput} />
+        <View style={styles.buttonsContainerStyle}>
+          <Icon
+            raised
+            name="microphone"
+            type="material-community"
+            color="#FF4081"
+            onPress={() => this.setState({ isModalVisible: true })}
+          />
+          <RecordModal isVisible={isModalVisible} onOk={this.onModalOk} onCancel={this.onModalCancel} />
+        </View>
         <Button
           title="Answer"
           borderRadius={25}
@@ -35,6 +65,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#FFF',
     borderRadius: 25
+  },
+  buttonsContainerStyle: {
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

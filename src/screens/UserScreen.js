@@ -165,7 +165,7 @@ class UserScreen extends Component {
             <Text style={styles.textBoldStyle}>{`${firstName} ${lastName}`}</Text>
             <Button
               title={isFollowed ? 'Unfollow' : 'Follow'}
-              buttonStyle={{ width: 100, height: 10 }}
+              buttonStyle={styles.followButtonStyle}
               onPress={this.followOrUnfollowUser}
               borderRadius={25}
               fontSize={11}
@@ -275,6 +275,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 10,
     marginBottom: 3
+  },
+  followButtonStyle: {
+    width: 100,
+    height: 10
   },
   infoContainerStyle: {
     flexDirection: 'row',
