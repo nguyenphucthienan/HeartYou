@@ -93,12 +93,6 @@ class SideBarMenu extends Component {
                   typeIcon: 'entypo'
                 },
                 {
-                  key: 'App:',
-                  value: 'Heart You',
-                  icon: 'developer-mode',
-                  typeIcon: 'material-icons'
-                },
-                {
                   key: 'Class:',
                   value: 'SE346.J11',
                   icon: 'group-work',
@@ -128,26 +122,28 @@ class SideBarMenu extends Component {
               )}
               keyExtractor={item => item.key}
             />
-            <Button
-              title="Edit"
-              icon={{ name: 'pencil-square-o', type: 'font-awesome' }}
-              onPress={() => navigation.navigate('EditInfo')}
-              borderRadius={25}
-              fontSize={14}
-              fontFamily="monospace"
-              backgroundColor="#FF4081"
-              containerViewStyle={styles.containerViewStyle}
-            />
-            <Button
-              title="Logout"
-              icon={{ name: 'logout', type: 'material-community' }}
-              onPress={this.onLogout}
-              borderRadius={25}
-              fontSize={14}
-              fontFamily="monospace"
-              backgroundColor="#1565C0"
-              containerViewStyle={styles.containerViewStyle}
-            />
+            <View style={styles.buttonContainerStyle}>
+              <Button
+                title="Edit"
+                icon={{ name: 'pencil-square-o', type: 'font-awesome' }}
+                onPress={() => navigation.navigate('EditInfo')}
+                borderRadius={25}
+                fontSize={14}
+                fontFamily="monospace"
+                backgroundColor="#FF4081"
+                containerViewStyle={styles.containerViewStyle}
+              />
+              <Button
+                title="Logout"
+                icon={{ name: 'logout', type: 'material-community' }}
+                onPress={this.onLogout}
+                borderRadius={25}
+                fontSize={14}
+                fontFamily="monospace"
+                backgroundColor="#1565C0"
+                containerViewStyle={styles.containerViewStyle}
+              />
+            </View>
           </View>
         </View>
       );
@@ -176,6 +172,9 @@ const styles = StyleSheet.create({
   },
   bodyStyle: {
     flex: 3
+  },
+  buttonContainerStyle: {
+    paddingVertical: 10
   },
   separatorViewStyle: {
     height: 1.5,

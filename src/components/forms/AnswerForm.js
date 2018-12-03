@@ -14,9 +14,9 @@ class AnswerForm extends Component {
     this.onModalCancel = this.onModalCancel.bind(this);
   }
 
-  onModalOk(audioUrl) {
+  onModalOk(answerAudioUrl) {
     const { change } = this.props;
-    change('audioUrl', audioUrl);
+    change('answerAudioUrl', answerAudioUrl);
     this.setState({ isModalVisible: false });
   }
 

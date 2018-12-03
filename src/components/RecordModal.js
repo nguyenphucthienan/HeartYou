@@ -201,8 +201,6 @@ class RecordModal extends Component {
   }
 
   finishRecording(didSucceed, filePath, fileSize) {
-    const { currentTime } = this.state;
-    ToastAndroid.show(`Finished recording of duration ${currentTime} seconds.`, ToastAndroid.SHORT);
   }
 
   uploadAudioAsync() {
@@ -221,9 +219,10 @@ class RecordModal extends Component {
   }
 
   async ok() {
-    const { stopped } = this.state;
+    const { stopped, currentTime } = this.state;
     if (stopped) {
       const { onOk } = this.props;
+      ToastAndroid.show(`Finished recording of duration ${currentTime} seconds.`, ToastAndroid.SHORT);
       const audioUrl = await this.uploadAudioAsync();
       onOk(audioUrl);
     } else {
@@ -259,7 +258,7 @@ class RecordModal extends Component {
             }
             {this.renderButton('STOP', () => { this.stop(); }, stopped)}
             {this.renderButton('PLAY', () => { this.play(); })}
-            <Text style={styles.progressText}>{currentTime}</Text>
+            <Text style={styles.progressText}>{`${currentTime}s`}</Text>
           </View>
           <View style={styles.buttonsContainerStyle}>
             <Button
@@ -319,12 +318,12 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   progressText: {
-    paddingHorizontal: 20,
-    fontSize: 25
+    paddingVertical: 20,
+    fontSize: 35
   },
   controlContainerViewStyle: {
     marginTop: 5,
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: '#FFF',
     borderRadius: 5
   },

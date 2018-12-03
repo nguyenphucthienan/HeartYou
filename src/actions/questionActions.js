@@ -104,10 +104,10 @@ export const askQuestion = (token, answerer, questionText) => async (dispatch) =
   }
 };
 
-export const answerQuestion = (token, questionId, answerText) => async (dispatch) => {
+export const answerQuestion = (token, questionId, values) => async (dispatch) => {
   try {
     const url = getAnswerQuestionsUrl(questionId);
-    await axios.post(url, { answerText }, { headers: { authorization: `Bearer ${token}` } });
+    await axios.post(url, values, { headers: { authorization: `Bearer ${token}` } });
   } catch (err) {
     //
   }
