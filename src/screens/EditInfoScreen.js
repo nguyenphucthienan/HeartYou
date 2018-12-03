@@ -18,6 +18,7 @@ class EditInfoScreen extends Component {
   constructor() {
     super();
     this.onSubmitForm = this.onSubmitForm.bind(this);
+    this.onCancelForm = this.onCancelForm.bind(this);
   }
 
   async onSubmitForm(values) {
@@ -33,17 +34,22 @@ class EditInfoScreen extends Component {
     await getMyUserInfoConnect(token);
 
     clearForm();
-    navigation.navigate('Home');
+    navigation.goBack();
+  }
+
+  onCancelForm() {
+    const { clearForm, navigation } = this.props;
+    clearForm();
+    navigation.goBack();
   }
 
   render() {
-    const { navigation } = this.props;
     return (
       <ImageBackground source={background} style={styles.imageBackgroundStyle}>
         <ScrollView contentContainerStyle={styles.contentContainerStyle}>
           <Text style={styles.titleStyle}>Edit Info</Text>
           <KeyboardAvoidingView behavior="padding">
-            <EditInfoForm onSubmit={this.onSubmitForm} navigation={navigation} />
+            <EditInfoForm onSubmit={this.onSubmitForm} onCancel={this.onCancelForm} />
           </KeyboardAvoidingView>
         </ScrollView>
       </ImageBackground>
@@ -72,7 +78,7 @@ const mapStateToProps = ({ auth }) => ({ auth });
 
 const mapDispatchToProps = dispatch => ({
   getMyUserInfoConnect: token => dispatch(getMyUserInfo(token)),
-  editUserInfoConnect: values => dispatch(editUserInfo(values)),
+  editUserInfoConnect: (token, userId, values) => dispatch(editUserInfo(token, userId, values)),
   clearForm: () => dispatch(reset('editInfo'))
 });
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button } from 'react-native-elements';
 
@@ -7,7 +8,7 @@ import TextFieldInput from '../TextFieldInput';
 
 class EditInfoForm extends Component {
   render() {
-    const { handleSubmit, onSubmit, navigation } = this.props;
+    const { handleSubmit, onSubmit, onCancel } = this.props;
     return (
       <View>
         <Field name="firstName" placeholder="First Name" component={TextFieldInput} style={styles.inputFieldStyle} />
@@ -28,7 +29,7 @@ class EditInfoForm extends Component {
           />
           <Button
             title="Cancel"
-            onPress={() => navigation.goBack()}
+            onPress={() => onCancel()}
             borderRadius={25}
             fontSize={14}
             fontWeight="bold"
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace'
   },
   viewStyle: {
+    marginTop: 10,
     marginHorizontal: 50
   },
   containerViewStyle: {
@@ -95,7 +97,12 @@ function validate(values) {
   return errors;
 }
 
-export default reduxForm({
+const editInfoForm = reduxForm({
   form: 'editInfo',
+  enableReinitialize: true,
   validate,
 })(EditInfoForm);
+
+const mapStateToProps = ({ auth }) => ({ initialValues: auth });
+
+export default connect(mapStateToProps)(editInfoForm);

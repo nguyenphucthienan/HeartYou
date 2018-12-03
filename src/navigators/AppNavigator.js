@@ -6,7 +6,7 @@ import AuthStackNavigator from './AuthStackNavigator';
 import MainDrawerNavigator from './MainDrawerNavigator';
 
 const AppNavigator = createSwitchNavigator({
-  Home: {
+  Welcome: {
     screen: WelcomeScreen
   },
   AuthStack: {

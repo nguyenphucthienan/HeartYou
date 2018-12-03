@@ -67,7 +67,7 @@ export const getMyUserInfo = token => async (dispatch) => {
 export const editUserInfo = (token, userId, info) => async (dispatch) => {
   try {
     const url = getUserInfoUrl(userId);
-    await axios.post(url, info, { headers: { authorization: `Bearer ${token}` } });
+    await axios.patch(url, info, { headers: { authorization: `Bearer ${token}` } });
 
     ToastAndroid.show('Your information was changed successfully!', ToastAndroid.SHORT);
   } catch (err) {
