@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   },
   containerViewStyle: {
     paddingHorizontal: 60,
+    marginTop: 5,
     borderWidth: 2,
     borderColor: '#FFF',
     borderRadius: 25
@@ -50,11 +51,11 @@ function validate(values) {
   const errors = {};
 
   if (!values.searchString) {
-    errors.searchString = 'Please enter a search string to search';
+    errors.searchString = 'Please enter a username to search';
   }
 
   if (values.searchString && (values.searchString.length < 3 || values.searchString.length > 20)) {
-    errors.searchString = 'Search string must be between 3 and 20 characters long';
+    errors.searchString = 'Username must be between 3 and 20 characters long';
   }
 
   return errors;

@@ -16,7 +16,7 @@ class QuestionCard extends Component {
     this.heartOrUnheartQuestion = this.heartOrUnheartQuestion.bind(this);
   }
 
-  onAvatarPress(user) {
+  onAvatarPress() {
     return () => { };
   }
 

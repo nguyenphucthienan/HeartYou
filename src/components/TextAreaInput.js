@@ -19,7 +19,9 @@ export default ({
       onEndEditing={onBlur}
       {...restInput}
     />
-    <FormValidationMessage>{touched && error}</FormValidationMessage>
+    <FormValidationMessage labelStyle={styles.validationTextStyle}>
+      {touched && error}
+    </FormValidationMessage>
   </View>
 );
 
@@ -30,5 +32,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 5,
     paddingLeft: 5
+  },
+  validationTextStyle: {
+    fontSize: 14
   }
 });

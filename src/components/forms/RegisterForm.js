@@ -4,9 +4,9 @@ import { Field, reduxForm, } from 'redux-form';
 import { Button } from 'react-native-elements';
 import axios from 'axios';
 
-import TextFieldInput from '../TextFieldInput';
-
 import { CHECK_USERNAME_URL } from '../../config/api';
+
+import TextFieldInput from '../TextFieldInput';
 
 class RegisterForm extends Component {
   render() {
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     color: '#000',
     paddingHorizontal: 20,
+    marginTop: 5,
     fontFamily: 'monospace'
   },
   viewStyle: {

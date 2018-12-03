@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { FormInput, FormValidationMessage } from 'react-native-elements';
 
 export default ({
@@ -17,6 +17,14 @@ export default ({
       onEndEditing={onBlur}
       {...restInput}
     />
-    <FormValidationMessage>{touched && error}</FormValidationMessage>
+    <FormValidationMessage labelStyle={styles.validationTextStyle}>
+      {touched && error}
+    </FormValidationMessage>
   </View>
 );
+
+const styles = StyleSheet.create({
+  validationTextStyle: {
+    fontSize: 14
+  }
+});

@@ -31,6 +31,7 @@ class AnswerForm extends Component {
 const styles = StyleSheet.create({
   containerViewStyle: {
     paddingHorizontal: 60,
+    marginTop: 5,
     borderWidth: 2,
     borderColor: '#FFF',
     borderRadius: 25
