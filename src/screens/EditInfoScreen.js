@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
 import {
-  KeyboardAvoidingView,
   ScrollView,
+  KeyboardAvoidingView,
   Text,
   ImageBackground,
   StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import { reset } from 'redux-form';
-import { registerUser } from '../actions';
+import { getMyUserInfo, editUserInfo } from '../actions';
 
-import RegisterForm from '../components/forms/RegisterForm';
+import EditInfoForm from '../components/forms/EditInfoForm';
 
 const background = require('../assets/background/background-2.jpg');
 
-class RegisterScreen extends Component {
+class EditInfoScreen extends Component {
   constructor() {
     super();
     this.onSubmitForm = this.onSubmitForm.bind(this);
   }
 
   async onSubmitForm(values) {
-    const { registerUserConnect, clearForm, navigation } = this.props;
+    const {
+      auth: { token, _id: userId },
+      getMyUserInfoConnect,
+      editUserInfoConnect,
+      clearForm,
+      navigation
+    } = this.props;
 
-    await registerUserConnect(values);
+    await editUserInfoConnect(token, userId, values);
+    await getMyUserInfoConnect(token);
+
     clearForm();
-    navigation.navigate('Login');
+    navigation.navigate('Home');
   }
 
   render() {
@@ -33,9 +41,9 @@ class RegisterScreen extends Component {
     return (
       <ImageBackground source={background} style={styles.imageBackgroundStyle}>
         <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-          <Text style={styles.titleStyle}>Register</Text>
+          <Text style={styles.titleStyle}>Edit Info</Text>
           <KeyboardAvoidingView behavior="padding">
-            <RegisterForm onSubmit={this.onSubmitForm} navigation={navigation} />
+            <EditInfoForm onSubmit={this.onSubmitForm} navigation={navigation} />
           </KeyboardAvoidingView>
         </ScrollView>
       </ImageBackground>
@@ -57,15 +65,18 @@ const styles = StyleSheet.create({
     color: '#03A9F4',
     fontFamily: 'monospace',
     fontWeight: 'bold'
-  }
+  },
 });
 
+const mapStateToProps = ({ auth }) => ({ auth });
+
 const mapDispatchToProps = dispatch => ({
-  registerUserConnect: values => dispatch(registerUser(values)),
-  clearForm: () => dispatch(reset('register'))
+  getMyUserInfoConnect: token => dispatch(getMyUserInfo(token)),
+  editUserInfoConnect: values => dispatch(editUserInfo(values)),
+  clearForm: () => dispatch(reset('editInfo'))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(RegisterScreen);
+)(EditInfoScreen);

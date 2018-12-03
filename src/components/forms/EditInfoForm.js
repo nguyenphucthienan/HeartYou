@@ -7,24 +7,37 @@ import TextFieldInput from '../TextFieldInput';
 
 class EditInfoForm extends Component {
   render() {
-    const { handleSubmit, onSubmit } = this.props;
+    const { handleSubmit, onSubmit, navigation } = this.props;
     return (
       <View>
         <Field name="firstName" placeholder="First Name" component={TextFieldInput} style={styles.inputFieldStyle} />
         <Field name="lastName" placeholder="Last Name" component={TextFieldInput} style={styles.inputFieldStyle} />
         <Field name="photoUrl" placeholder="Photo URL" component={TextFieldInput} style={styles.inputFieldStyle} />
         <Field name="moodMessage" placeholder="Mood Message" component={TextFieldInput} style={styles.inputFieldStyle} />
-        <Button
-          title="Save"
-          borderRadius={25}
-          fontSize={14}
-          fontWeight="bold"
-          fontFamily="monospace"
-          color="#FFF"
-          backgroundColor="#FF4081"
-          onPress={handleSubmit(onSubmit)}
-          containerViewStyle={styles.containerViewStyle}
-        />
+        <View style={styles.viewStyle}>
+          <Button
+            title="Save"
+            borderRadius={25}
+            fontSize={14}
+            fontWeight="bold"
+            fontFamily="monospace"
+            color="#FFF"
+            backgroundColor="#FF4081"
+            onPress={handleSubmit(onSubmit)}
+            containerViewStyle={styles.containerViewStyle}
+          />
+          <Button
+            title="Cancel"
+            onPress={() => navigation.goBack()}
+            borderRadius={25}
+            fontSize={14}
+            fontWeight="bold"
+            fontFamily="monospace"
+            color="#FFF"
+            backgroundColor="#1565C0"
+            containerViewStyle={styles.containerViewStyle}
+          />
+        </View>
       </View>
     );
   }
@@ -40,6 +53,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginTop: 5,
     fontFamily: 'monospace'
+  },
+  viewStyle: {
+    marginHorizontal: 50
   },
   containerViewStyle: {
     marginTop: 10,
@@ -60,12 +76,12 @@ function validate(values) {
     errors.lastName = 'Please enter your last name';
   }
 
-  if (!values.avatar) {
-    errors.avatar = 'Please enter your avatar URL';
+  if (!values.photoUrl) {
+    errors.photoUrl = 'Please enter your photoUrl URL';
   }
 
-  if (values.avatar && values.avatar.match(/\.(jpeg|jpg|gif|png)$/) == null) {
-    errors.avatar = 'Photo URL is not a valid URL';
+  if (values.photoUrl && values.photoUrl.match(/\.(jpeg|jpg|gif|png)$/) == null) {
+    errors.photoUrl = 'Photo URL is not a valid URL';
   }
 
   if (!values.moodMessage) {
@@ -80,6 +96,6 @@ function validate(values) {
 }
 
 export default reduxForm({
-  form: 'editinfo',
+  form: 'editInfo',
   validate,
 })(EditInfoForm);

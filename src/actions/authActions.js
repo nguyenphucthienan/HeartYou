@@ -4,7 +4,8 @@ import { ToastAndroid, AsyncStorage } from 'react-native';
 import {
   REGISTER_URL,
   LOGIN_URL,
-  MY_USER_INFO_URL
+  MY_USER_INFO_URL,
+  getUserInfoUrl
 } from '../config/api';
 
 import {
@@ -60,5 +61,16 @@ export const getMyUserInfo = token => async (dispatch) => {
     dispatch({ type: GET_MY_USER_INFO_SUCCEED, payload: response.data });
   } catch (err) {
     ToastAndroid.show('Get user info failed', ToastAndroid.SHORT);
+  }
+};
+
+export const editUserInfo = (token, userId, info) => async (dispatch) => {
+  try {
+    const url = getUserInfoUrl(userId);
+    await axios.post(url, info, { headers: { authorization: `Bearer ${token}` } });
+
+    ToastAndroid.show('Your information was changed successfully!', ToastAndroid.SHORT);
+  } catch (err) {
+    ToastAndroid.show('Cannot change your information. Please try again!', ToastAndroid.SHORT);
   }
 };
