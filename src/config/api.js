@@ -1,5 +1,6 @@
 // Development
-const API_URL = 'http://192.168.242.2:3000/api';
+// const API_URL = 'http://192.168.242.2:3000/api';
+const API_URL = 'http://192.168.1.126:3000/api';
 
 // Production
 // const API_URL = 'http://heartyouapi.herokuapp.com/api';
@@ -11,6 +12,8 @@ export const MY_USER_INFO_URL = `${API_URL}/auth/me`;
 
 export const SEARCH_USER_URL = `${API_URL}/users/search`;
 export const ASK_QUESTION_URL = `${API_URL}/questions`;
+
+export const UPLOAD_AUDIO_URL = `${API_URL}/upload/audio`;
 
 export const getUserInfoUrl = userId => `${API_URL}/users/${userId}`;
 
