@@ -12,7 +12,7 @@ import { Button, Icon, Avatar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { followOrUnfollowUser, getMyUserInfo } from '../actions';
-import { getAnsweredQuestionsUrl } from '../config/api';
+import { getUserInfoUrl, getAnsweredQuestionsUrl } from '../config/api';
 
 import HeartYouHeader from '../components/HeartYouHeader';
 import QuestionCard from '../components/QuestionCard';
@@ -23,6 +23,7 @@ class UserScreen extends Component {
   constructor() {
     super();
     this.state = {
+      userInfo: {},
       pagination: {
         pageNumber: 1,
         pageSize: 10
@@ -33,6 +34,7 @@ class UserScreen extends Component {
     };
 
     this.renderHeader = this.renderHeader.bind(this);
+    this.getUserInfo = this.getUserInfo.bind(this);
     this.getFirstBatch = this.getFirstBatch.bind(this);
     this.onEndReached = this.onEndReached.bind(this);
     this.onRefresh = this.onRefresh.bind(this);
@@ -41,13 +43,18 @@ class UserScreen extends Component {
   }
 
   async componentWillMount() {
-    this.checkFollow();
+    await this.getUserInfo();
     await this.getFirstBatch();
   }
 
-  checkFollow() {
-    const { auth: { following }, navigation } = this.props;
+  async getUserInfo() {
+    const { auth: { token, following }, navigation } = this.props;
     const user = navigation.getParam('user', null);
+
+    const url = getUserInfoUrl(user._id);
+    const response = await axios.get(url, { headers: { authorization: `Bearer ${token}` } });
+
+    this.setState({ userInfo: response.data });
 
     if (following.includes(user._id)) {
       this.setState({ isFollowed: true });
@@ -130,8 +137,7 @@ class UserScreen extends Component {
 
   renderHeader() {
     const { navigation } = this.props;
-    const user = navigation.getParam('user', null);
-
+    const { userInfo, isFollowed } = this.state;
     const {
       username,
       firstName,
@@ -140,9 +146,7 @@ class UserScreen extends Component {
       photoUrl,
       moodMessage,
       following
-    } = user;
-
-    const { isFollowed } = this.state;
+    } = userInfo;
 
     return (
       <View style={styles.headerContainerStyle}>
@@ -177,7 +181,7 @@ class UserScreen extends Component {
               fontFamily="monospace"
               color="#FFF"
               backgroundColor="#FF4081"
-              onPress={() => navigation.navigate('Ask', { user })}
+              onPress={() => navigation.navigate('Ask', { user: userInfo })}
               rightIcon={{ name: 'sentiment-very-satisfied', type: 'material-icons' }}
               containerViewStyle={styles.containerViewStyle}
             />
