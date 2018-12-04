@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Avatar, Icon } from 'react-native-elements';
 import { heartOrUnheartQuestion } from '../actions';
 
-import PlayModal from './PlayModal';
+import PlayModal from './modals/PlayModal';
 
 class QuestionCard extends Component {
   constructor(props) {

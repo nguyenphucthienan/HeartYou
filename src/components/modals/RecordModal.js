@@ -12,7 +12,7 @@ import Sound from 'react-native-sound';
 import Modal from 'react-native-modal';
 import axios from 'axios';
 
-import { UPLOAD_AUDIO_URL } from '../config/api';
+import { UPLOAD_AUDIO_URL } from '../../config/api';
 
 class RecordModal extends Component {
   constructor() {
@@ -21,7 +21,7 @@ class RecordModal extends Component {
       currentTime: 0.0,
       recording: false,
       paused: false,
-      stopped: false,
+      stopped: true,
       hasPermission: null,
       audioPath: `${AudioUtils.DocumentDirectoryPath}/audio.aac`
     };

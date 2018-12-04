@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { FormLabel, Button, Icon } from 'react-native-elements';
 
 import TextAreaInput from '../TextAreaInput';
-import RecordModal from '../RecordModal';
+import RecordModal from '../modals/RecordModal';
 
 class AskForm extends Component {
   constructor() {

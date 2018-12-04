@@ -131,6 +131,7 @@ class SideBarMenu extends Component {
                 fontSize={14}
                 fontFamily="monospace"
                 backgroundColor="#FF4081"
+                buttonStyle={styles.buttonStyle}
                 containerViewStyle={styles.containerViewStyle}
               />
               <Button
@@ -141,6 +142,7 @@ class SideBarMenu extends Component {
                 fontSize={14}
                 fontFamily="monospace"
                 backgroundColor="#1565C0"
+                buttonStyle={styles.buttonStyle}
                 containerViewStyle={styles.containerViewStyle}
               />
             </View>
@@ -163,7 +165,7 @@ class SideBarMenu extends Component {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    flex: 1,
+    flex: 1
   },
   backgroundHeaderStyle: {
     flex: 1,
@@ -174,7 +176,9 @@ const styles = StyleSheet.create({
     flex: 3
   },
   buttonContainerStyle: {
-    paddingVertical: 10
+    paddingVertical: 15,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   separatorViewStyle: {
     height: 1.5,
@@ -194,10 +198,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 6,
     marginVertical: 10
   },
+  buttonStyle: {
+    width: 180,
+    height: 35
+  },
   containerViewStyle: {
+    marginTop: 10,
     marginLeft: 30,
-    marginRight: 30,
-    marginBottom: 15
+    marginRight: 30
   }
 });
 

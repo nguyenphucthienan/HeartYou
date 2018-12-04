@@ -158,7 +158,7 @@ class UserScreen extends Component {
             title={photoUrl ? '' : (username && username.toUpperCase().slice(0, 1))}
             onPress={() => { }}
             activeOpacity={0.7}
-            containerStyle={{ marginTop: 20 }}
+            containerStyle={styles.avatarContainerStyle}
           />
           <View style={styles.userContainerStyle}>
             <Text>{`@${username}`}</Text>
@@ -255,6 +255,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 15
+  },
+  avatarContainerStyle: {
+    marginTop: 20
   },
   textBoldStyle: {
     fontWeight: 'bold'
