@@ -124,8 +124,8 @@ class QuestionCard extends Component {
             <Text>{numOfHearts > 0 ? ` ${numOfHearts}` : ' '}</Text>
           </View>
           <View style={styles.audioContainerStyle}>
-            {this.renderAudioButton('Question', '#651fff', questionAudioUrl)}
-            {this.renderAudioButton('Answer', '#00e676', answerAudioUrl)}
+            {this.renderAudioButton('Question', '#651FFF', questionAudioUrl)}
+            {this.renderAudioButton('Answer', '#00E676', answerAudioUrl)}
           </View>
         </View>
         <PlayModal

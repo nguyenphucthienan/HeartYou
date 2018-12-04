@@ -46,7 +46,7 @@ class AnswerScreen extends Component {
         <View style={styles.containerStyle}>
           <Text style={styles.titleStyle}>Answer</Text>
           <Text style={styles.questionTextStyle}>{question.questionText}</Text>
-          <AnswerForm onSubmit={this.onSubmitForm} />
+          <AnswerForm onSubmit={this.onSubmitForm} questionAudioUrl={question.questionAudioUrl} />
         </View>
       </View>
     );

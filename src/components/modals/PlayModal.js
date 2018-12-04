@@ -47,13 +47,14 @@ class PlayModal extends Component {
 
   play() {
     const { stopped } = this.state;
-    this.setState({ stopped: false, currentTime: 0 });
 
     if (!this.sound) {
       ToastAndroid.show('Load audio failed!', ToastAndroid.SHORT);
+      return;
     }
 
     if (this.sound && stopped) {
+      this.setState({ stopped: false, currentTime: 0 });
       this.interval = setInterval(() => this.setCurrentTime(), 250);
 
       this.sound.play((success) => {

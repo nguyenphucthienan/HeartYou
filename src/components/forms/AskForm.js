@@ -30,8 +30,6 @@ class AskForm extends Component {
 
     return (
       <View>
-        <FormLabel>Enter your question</FormLabel>
-        <Field name="questionText" component={TextAreaInput} />
         <View style={styles.buttonsContainerStyle}>
           <Icon
             raised
@@ -40,8 +38,14 @@ class AskForm extends Component {
             color="#FF4081"
             onPress={() => this.setState({ isModalVisible: true })}
           />
-          <RecordModal isVisible={isModalVisible} onOk={this.onModalOk} onCancel={this.onModalCancel} />
+          <RecordModal
+            isVisible={isModalVisible}
+            onOk={this.onModalOk}
+            onCancel={this.onModalCancel}
+          />
         </View>
+        <FormLabel>Enter your question</FormLabel>
+        <Field name="questionText" component={TextAreaInput} />
         <Button
           title="Ask"
           borderRadius={25}
@@ -68,7 +72,8 @@ const styles = StyleSheet.create({
   },
   buttonsContainerStyle: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 10
   }
 });
 

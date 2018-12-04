@@ -4,44 +4,75 @@ import { Field, reduxForm } from 'redux-form';
 import { FormLabel, Button, Icon } from 'react-native-elements';
 
 import TextAreaInput from '../TextAreaInput';
+import PlayModal from '../modals/PlayModal';
 import RecordModal from '../modals/RecordModal';
 
 class AnswerForm extends Component {
   constructor() {
     super();
-    this.state = { isModalVisible: false };
-    this.onModalOk = this.onModalOk.bind(this);
+    this.state = {
+      isPlayModalVisible: false,
+      isRecordModalVisible: false
+    };
+
+    this.onRecordModalOk = this.onRecordModalOk.bind(this);
+    this.onModalClose = this.onModalClose.bind(this);
     this.onModalCancel = this.onModalCancel.bind(this);
   }
 
-  onModalOk(answerAudioUrl) {
+  onRecordModalOk(answerAudioUrl) {
     const { change } = this.props;
     change('answerAudioUrl', answerAudioUrl);
-    this.setState({ isModalVisible: false });
+    this.setState({ isPlayModalVisible: false });
+  }
+
+  onModalClose() {
+    this.setState({ isPlayModalVisible: false });
   }
 
   onModalCancel() {
-    this.setState({ isModalVisible: false });
+    this.setState({ isRecordModalVisible: false });
   }
 
   render() {
-    const { handleSubmit, onSubmit } = this.props;
-    const { isModalVisible } = this.state;
+    const { handleSubmit, onSubmit, questionAudioUrl } = this.props;
+    const { isPlayModalVisible, isRecordModalVisible } = this.state;
 
     return (
       <View>
-        <FormLabel>Enter your answer</FormLabel>
-        <Field name="answerText" component={TextAreaInput} />
         <View style={styles.buttonsContainerStyle}>
+          <Icon
+            raised
+            name="volume-high"
+            type="material-community"
+            color={questionAudioUrl ? '#651FFF' : '#DDD'}
+            onPress={
+              questionAudioUrl
+                ? () => this.setState({ isPlayModalVisible: true })
+                : () => { }
+            }
+          />
           <Icon
             raised
             name="microphone"
             type="material-community"
             color="#FF4081"
-            onPress={() => this.setState({ isModalVisible: true })}
+            onPress={() => this.setState({ isRecordModalVisible: true })}
           />
-          <RecordModal isVisible={isModalVisible} onOk={this.onModalOk} onCancel={this.onModalCancel} />
+          <PlayModal
+            isVisible={isPlayModalVisible}
+            title="Question"
+            audioUrl={questionAudioUrl}
+            onClose={this.onModalClose}
+          />
+          <RecordModal
+            isVisible={isRecordModalVisible}
+            onOk={this.onRecordModalOk}
+            onCancel={this.onModalCancel}
+          />
         </View>
+        <FormLabel>Enter your answer</FormLabel>
+        <Field name="answerText" component={TextAreaInput} />
         <Button
           title="Answer"
           borderRadius={25}
@@ -67,8 +98,10 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   buttonsContainerStyle: {
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 10
   }
 });
 
