@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ auth: { token } }) => ({ token });
 
 const mapDispatchToProps = dispatch => ({
-  answerQuestionConnect: (token, questionId, answerText) => dispatch(answerQuestion(token, questionId, answerText)),
+  answerQuestionConnect: (token, questionId, values) => dispatch(answerQuestion(token, questionId, values)),
 });
 
 export default connect(

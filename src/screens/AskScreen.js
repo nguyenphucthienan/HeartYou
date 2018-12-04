@@ -16,9 +16,8 @@ class AskScreen extends Component {
   async onSubmitForm(values) {
     const { token, navigation, askQuestionConnect } = this.props;
     const user = navigation.getParam('user', null);
-    const { questionText } = values;
 
-    await askQuestionConnect(token, user._id, questionText);
+    await askQuestionConnect(token, user._id, values);
     navigation.goBack();
   }
 
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ auth: { token } }) => ({ token });
 
 const mapDispatchToProps = dispatch => ({
-  askQuestionConnect: (token, answerer, questionText) => dispatch(askQuestion(token, answerer, questionText)),
+  askQuestionConnect: (token, answerer, values) => dispatch(askQuestion(token, answerer, values)),
 });
 
 export default connect(

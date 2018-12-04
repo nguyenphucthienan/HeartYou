@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 20
   },
   titleStyle: {
     marginVertical: 50,
