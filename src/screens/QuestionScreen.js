@@ -7,7 +7,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Icon } from 'react-native-elements';
 import { getFirstUnansweredQuestions, getMoreUnansweredQuestions } from '../actions';
 
 import HeartYouHeader from '../components/HeartYouHeader';
@@ -60,7 +60,17 @@ class QuestionScreen extends Component {
         subtitle={(
           <View>
             <Text style={styles.questionTextStyle}>{question.questionText}</Text>
-            <Text>{`at ${new Date(question.createdAt).toLocaleString()}`}</Text>
+            <View style={styles.infoTextStyle}>
+              <Icon
+                name="volume-high"
+                type="material-community"
+                size={20}
+                color={question.questionAudioUrl ? '#651FFF' : '#DDD'}
+              />
+              <Text style={styles.dateTimeStyle}>
+                {`${new Date(question.createdAt).toLocaleString()}`}
+              </Text>
+            </View>
           </View>
         )}
         onPressRightIcon={() => navigation.navigate('Answer', {
@@ -109,6 +119,12 @@ class QuestionScreen extends Component {
 const styles = StyleSheet.create({
   questionTextStyle: {
     fontWeight: 'bold'
+  },
+  infoTextStyle: {
+    flexDirection: 'row'
+  },
+  dateTimeStyle: {
+    marginLeft: 2
   },
   contentContainerStyle: {
     paddingBottom: 75
