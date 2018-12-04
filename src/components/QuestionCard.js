@@ -21,7 +21,6 @@ class QuestionCard extends Component {
 
     this.onAvatarPress = this.onAvatarPress.bind(this);
     this.heartOrUnheartQuestion = this.heartOrUnheartQuestion.bind(this);
-    this.showPlayModal = this.showPlayModal.bind(this);
     this.onModalClose = this.onModalClose.bind(this);
   }
 
@@ -41,12 +40,33 @@ class QuestionCard extends Component {
     await heartOrUnheartQuestionConnect(token, question._id);
   }
 
-  showPlayModal() {
-    this.setState({ isModalVisible: true });
+  showPlayModal(modalTitle, audioUrl) {
+    this.setState({
+      isModalVisible: true,
+      modalTitle,
+      audioUrl
+    });
   }
 
   onModalClose() {
     this.setState({ isModalVisible: false });
+  }
+
+  renderAudioButton(modalTitle, buttonColor, audioUrl) {
+    const color = audioUrl ? buttonColor : '#DDD';
+    const onPress = audioUrl
+      ? () => this.showPlayModal(modalTitle, audioUrl)
+      : () => { };
+
+    return (
+      <Icon
+        name="volume-high"
+        type="material-community"
+        size={20}
+        color={color}
+        onPress={onPress}
+      />
+    );
   }
 
   render() {
@@ -62,7 +82,13 @@ class QuestionCard extends Component {
     } = this.props;
 
     const { username, photoUrl } = answerer;
-    const { isHearted, numOfHearts, isModalVisible } = this.state;
+    const {
+      isHearted,
+      numOfHearts,
+      isModalVisible,
+      modalTitle,
+      audioUrl
+    } = this.state;
 
     return (
       <View style={styles.cardStyle}>
@@ -90,26 +116,23 @@ class QuestionCard extends Component {
           <View style={styles.heartContainerStyle}>
             <Icon
               name="heart"
-              color={isHearted ? '#FF4081' : '#DDD'}
-              size={20}
               type="font-awesome"
+              size={20}
+              color={isHearted ? '#FF4081' : '#DDD'}
               onPress={this.heartOrUnheartQuestion}
             />
             <Text>{numOfHearts > 0 ? ` ${numOfHearts}` : ' '}</Text>
           </View>
-          <Icon
-            name="volume-high"
-            color="#FF4081"
-            size={20}
-            type="material-community"
-            onPress={this.showPlayModal}
-          />
+          <View style={styles.audioContainerStyle}>
+            {this.renderAudioButton('Question', '#651fff', questionAudioUrl)}
+            {this.renderAudioButton('Answer', '#00e676', answerAudioUrl)}
+          </View>
         </View>
         <PlayModal
           isVisible={isModalVisible}
-          title="Answer"
+          title={modalTitle}
+          audioUrl={audioUrl}
           onClose={this.onModalClose}
-          audioUrl={answerAudioUrl}
         />
       </View>
     );
@@ -182,6 +205,10 @@ const styles = StyleSheet.create({
     marginTop: 2
   },
   heartContainerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  audioContainerStyle: {
     flexDirection: 'row',
     justifyContent: 'center'
   }

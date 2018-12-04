@@ -225,9 +225,14 @@ class RecordModal extends Component {
   }
 
   cancel() {
+    const { stopped } = this.state;
     const { onCancel } = this.props;
-    this.stop();
-    onCancel();
+
+    if (stopped) {
+      onCancel();
+    } else {
+      ToastAndroid.show('Please stop before cancel', ToastAndroid.SHORT);
+    }
   }
 
   render() {

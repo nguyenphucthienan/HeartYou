@@ -29,6 +29,13 @@ class PlayModal extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { audioUrl } = nextProps;
+    if (audioUrl) {
+      this.sound = new Sound(audioUrl, '', (error) => { });
+    }
+  }
+
   setCurrentTime() {
     this.sound.getCurrentTime((seconds) => {
       if (this.interval) {

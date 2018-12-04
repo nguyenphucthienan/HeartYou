@@ -90,14 +90,14 @@ class NewsFeedScreen extends Component {
           name="star"
           type="font-awesome"
           size={18}
-          color="#FF4081"
+          color="#FFEA00"
         />
         <Text style={styles.welcomeTextStyle}>{`Hi ${firstName} ${lastName}. Have a nice day!`}</Text>
         <Icon
           name="star"
           type="font-awesome"
           size={18}
-          color="#FF4081"
+          color="#FFEA00"
         />
       </View>
     );
