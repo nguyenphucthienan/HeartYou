@@ -16,22 +16,22 @@ class AnswerForm extends Component {
     };
 
     this.onRecordModalOk = this.onRecordModalOk.bind(this);
-    this.onModalClose = this.onModalClose.bind(this);
     this.onModalCancel = this.onModalCancel.bind(this);
+    this.onModalClose = this.onModalClose.bind(this);
   }
 
   onRecordModalOk(answerAudioUrl) {
     const { change } = this.props;
     change('answerAudioUrl', answerAudioUrl);
-    this.setState({ isPlayModalVisible: false });
-  }
-
-  onModalClose() {
-    this.setState({ isPlayModalVisible: false });
+    this.setState({ isRecordModalVisible: false });
   }
 
   onModalCancel() {
     this.setState({ isRecordModalVisible: false });
+  }
+
+  onModalClose() {
+    this.setState({ isPlayModalVisible: false });
   }
 
   render() {
