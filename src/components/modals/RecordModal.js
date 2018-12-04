@@ -6,6 +6,7 @@ import {
   Platform,
   ToastAndroid
 } from 'react-native';
+import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 import Sound from 'react-native-sound';
@@ -197,7 +198,8 @@ class RecordModal extends Component {
   finishRecording(didSucceed, filePath, fileSize) {
   }
 
-  uploadAudioAsync() {
+  async uploadAudioAsync() {
+    const { token } = this.props;
     const path = `file://${AudioUtils.DocumentDirectoryPath}/audio.aac`;
 
     const formData = new FormData();
@@ -207,9 +209,13 @@ class RecordModal extends Component {
       type: 'audio/aac',
     });
 
-    return axios.post(UPLOAD_AUDIO_URL, formData)
-      .then(res => res.data.secureUrl)
-      .catch(error => console.log(error));
+    try {
+      const res = await axios.post(UPLOAD_AUDIO_URL, formData, { headers: { authorization: `Bearer ${token}` } });
+      return res.data.secureUrl;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
   async ok() {
@@ -328,4 +334,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RecordModal;
+const mapStateToProps = ({ auth: { token } }) => ({ token });
+
+export default connect(mapStateToProps)(RecordModal);
