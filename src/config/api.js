@@ -1,9 +1,8 @@
 // Development
-// const API_URL = 'http://192.168.56.1:3000/api';
-const API_URL = 'http://192.168.1.126:3000/api';
+// const API_URL = 'http://192.168.1.126:3000/api';
 
 // Production
-// const API_URL = 'http://heartyouapi.herokuapp.com/api';
+const API_URL = 'http://heartyouapi.herokuapp.com/api';
 
 export const REGISTER_URL = `${API_URL}/auth/register`;
 export const CHECK_USERNAME_URL = `${API_URL}/auth/check-username`;
