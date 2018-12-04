@@ -49,10 +49,12 @@ const styles = StyleSheet.create({
   },
   contentContainerStyle: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 30
   },
   titleStyle: {
-    marginVertical: 50,
+    marginTop: 50,
+    marginBottom: 20,
     fontSize: 40,
     color: '#03A9F4',
     fontFamily: 'monospace',

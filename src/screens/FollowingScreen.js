@@ -93,6 +93,7 @@ class FollowingScreen extends Component {
           <Icon
             name="user-times"
             type="font-awesome"
+            size={20}
             color="#FF4081"
             onPress={() => { this.followOrUnfollowUser(_id); }}
           />

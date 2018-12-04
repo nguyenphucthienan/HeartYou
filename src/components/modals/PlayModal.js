@@ -32,6 +32,7 @@ class PlayModal extends Component {
   componentWillReceiveProps(nextProps) {
     const { audioUrl } = nextProps;
     if (audioUrl) {
+      this.setState({ currentTime: 0 });
       this.sound = new Sound(audioUrl, '', (error) => { });
     }
   }
@@ -77,8 +78,14 @@ class PlayModal extends Component {
   }
 
   close() {
+    const { stopped } = this.state;
     const { onClose } = this.props;
-    onClose();
+
+    if (stopped) {
+      onClose();
+    } else {
+      ToastAndroid.show('Please stop before close', ToastAndroid.SHORT);
+    }
   }
 
   renderButton(title, onPress, active) {

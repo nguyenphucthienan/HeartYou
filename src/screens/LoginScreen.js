@@ -87,17 +87,7 @@ class LoginScreen extends Component {
           <TouchableOpacity onPress={() => navigation.navigate('Register')}>
             <Text style={styles.registerTextStyle}>Create an account</Text>
           </TouchableOpacity>
-          <Text style={styles.orTextStyle}>____or____</Text>
-          <TouchableOpacity onPress={() => ToastAndroid.show('Coming soon...', ToastAndroid.SHORT)}>
-            <View style={styles.googleContainerStyle}>
-              <Icon
-                type="material-community"
-                name="google-plus-box"
-                color="#FFF"
-              />
-              <Text style={styles.googleLoginTextStyle}> Login with Google</Text>
-            </View>
-          </TouchableOpacity>
+          <Text style={styles.horizontalTextStyle}>__________</Text>
           <TouchableOpacity onPress={() => BackHandler.exitApp()}>
             <Icon
               type="material-community"
@@ -113,16 +103,18 @@ class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
   imageBackgroundStyle: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   containerStyle: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   titleStyle: {
+    marginBottom: 60,
     fontSize: 40,
     color: '#FFF',
-    marginVertical: 80,
     fontFamily: 'monospace',
     fontWeight: 'bold'
   },
@@ -134,18 +126,9 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
     marginTop: 15
   },
-  orTextStyle: {
+  horizontalTextStyle: {
     color: '#FFF',
-    marginTop: 10
-  },
-  googleContainerStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 15
-  },
-  googleLoginTextStyle: {
-    color: '#FFF',
-    fontFamily: 'monospace'
+    marginBottom: 10
   },
   loadingContainerStyle: {
     flex: 1,

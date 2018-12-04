@@ -15,7 +15,7 @@ const MainDrawerNavigator = createDrawerNavigator({
     screen: EditInfoScreen
   }
 }, {
-  drawerWidth: 300,
+  drawerWidth: 280,
   contentComponent: props => <SideBarMenu {...props} />
 });
 
