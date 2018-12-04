@@ -4,16 +4,25 @@ import { connect } from 'react-redux';
 import { Avatar, Icon } from 'react-native-elements';
 import { heartOrUnheartQuestion } from '../actions';
 
+import PlayModal from './PlayModal';
+
 class QuestionCard extends Component {
   constructor(props) {
     super(props);
 
     const { hearts } = props.question;
     const { _id: myUserId } = props.auth;
-    this.state = { isHearted: hearts.includes(myUserId), numOfHearts: hearts.length };
+
+    this.state = {
+      isHearted: hearts.includes(myUserId),
+      numOfHearts: hearts.length,
+      isModalVisible: false
+    };
 
     this.onAvatarPress = this.onAvatarPress.bind(this);
     this.heartOrUnheartQuestion = this.heartOrUnheartQuestion.bind(this);
+    this.showPlayModal = this.showPlayModal.bind(this);
+    this.onModalClose = this.onModalClose.bind(this);
   }
 
   onAvatarPress() {
@@ -32,18 +41,28 @@ class QuestionCard extends Component {
     await heartOrUnheartQuestionConnect(token, question._id);
   }
 
+  showPlayModal() {
+    this.setState({ isModalVisible: true });
+  }
+
+  onModalClose() {
+    this.setState({ isModalVisible: false });
+  }
+
   render() {
     const {
       question: {
         answerer,
         questionText,
+        questionAudioUrl,
         answerText,
+        answerAudioUrl,
         answeredAt
       }
     } = this.props;
 
     const { username, photoUrl } = answerer;
-    const { isHearted, numOfHearts } = this.state;
+    const { isHearted, numOfHearts, isModalVisible } = this.state;
 
     return (
       <View style={styles.cardStyle}>
@@ -68,15 +87,30 @@ class QuestionCard extends Component {
           </View>
         </View>
         <View style={styles.bottomStyle}>
+          <View style={styles.heartContainerStyle}>
+            <Icon
+              name="heart"
+              color={isHearted ? '#FF4081' : '#DDD'}
+              size={20}
+              type="font-awesome"
+              onPress={this.heartOrUnheartQuestion}
+            />
+            <Text>{numOfHearts > 0 ? ` ${numOfHearts}` : ' '}</Text>
+          </View>
           <Icon
-            name="heart"
-            color={isHearted ? '#FF4081' : '#DDD'}
+            name="volume-high"
+            color="#FF4081"
             size={20}
-            type="font-awesome"
-            onPress={this.heartOrUnheartQuestion}
+            type="material-community"
+            onPress={this.showPlayModal}
           />
-          <Text>{numOfHearts > 0 ? numOfHearts : ' '}</Text>
         </View>
+        <PlayModal
+          isVisible={isModalVisible}
+          title="Answer"
+          onClose={this.onModalClose}
+          audioUrl={answerAudioUrl}
+        />
       </View>
     );
   }
@@ -146,6 +180,10 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     color: '#999',
     marginTop: 2
+  },
+  heartContainerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });
 

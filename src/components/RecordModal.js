@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight,
   Platform,
   ToastAndroid
 } from 'react-native';
@@ -23,8 +22,8 @@ class RecordModal extends Component {
       recording: false,
       paused: false,
       stopped: false,
-      audioPath: `${AudioUtils.DocumentDirectoryPath}/audio.aac`,
-      hasPermission: undefined,
+      hasPermission: null,
+      audioPath: `${AudioUtils.DocumentDirectoryPath}/audio.aac`
     };
 
     this.ok = this.ok.bind(this);
@@ -78,16 +77,6 @@ class RecordModal extends Component {
         onPress={onPress}
         containerViewStyle={styles.controlContainerViewStyle}
       />
-    );
-  }
-
-  renderPauseButton(onPress, active) {
-    const style = (active) ? styles.activeButtonText : styles.buttonText;
-    const { paused } = this.state;
-    return (
-      <TouchableHighlight style={styles.button} onPress={onPress}>
-        <Text style={style}>{paused ? 'RESUME' : 'PAUSE'}</Text>
-      </TouchableHighlight>
     );
   }
 
@@ -249,7 +238,7 @@ class RecordModal extends Component {
       <Modal isVisible={isVisible}>
         <View style={styles.containerStyle}>
           <Text>Recording</Text>
-          <View style={styles.controls}>
+          <View style={styles.controlsStyle}>
             {this.renderButton('RECORD', () => { this.record(); }, recording)}
             {
               paused
@@ -258,7 +247,7 @@ class RecordModal extends Component {
             }
             {this.renderButton('STOP', () => { this.stop(); }, stopped)}
             {this.renderButton('PLAY', () => { this.play(); })}
-            <Text style={styles.progressText}>{`${currentTime}s`}</Text>
+            <Text style={styles.progressTextStyle}>{`${currentTime}s`}</Text>
           </View>
           <View style={styles.buttonsContainerStyle}>
             <Button
@@ -313,11 +302,11 @@ const styles = StyleSheet.create({
     borderColor: '#FFF',
     borderRadius: 25
   },
-  controls: {
+  controlsStyle: {
     justifyContent: 'center',
     alignItems: 'center'
   },
-  progressText: {
+  progressTextStyle: {
     paddingVertical: 20,
     fontSize: 35
   },
