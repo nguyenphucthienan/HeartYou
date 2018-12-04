@@ -39,10 +39,7 @@ class PlayModal extends Component {
 
   play() {
     const { stopped } = this.state;
-    this.setState({
-      stopped: false,
-      currentTime: 0
-    });
+    this.setState({ stopped: false, currentTime: 0 });
 
     if (!this.sound) {
       ToastAndroid.show('Load audio failed!', ToastAndroid.SHORT);
@@ -68,10 +65,7 @@ class PlayModal extends Component {
     const { stopped } = this.state;
     if (this.sound && !stopped) {
       this.sound.stop();
-      this.setState({
-        stopped: true,
-        currentTime: 0
-      });
+      this.setState({ stopped: true, currentTime: 0 });
     }
   }
 

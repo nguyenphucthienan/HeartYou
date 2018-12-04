@@ -26,6 +26,11 @@ class RecordModal extends Component {
       audioPath: `${AudioUtils.DocumentDirectoryPath}/audio.aac`
     };
 
+    this.record = this.record.bind(this);
+    this.pause = this.pause.bind(this);
+    this.resume = this.resume.bind(this);
+    this.stop = this.stop.bind(this);
+    this.play = this.play.bind(this);
     this.ok = this.ok.bind(this);
     this.cancel = this.cancel.bind(this);
   }
@@ -83,7 +88,7 @@ class RecordModal extends Component {
   async pause() {
     const { recording } = this.state;
     if (!recording) {
-      console.log('Can\'t pause, not recording!');
+      ToastAndroid.show('Can\'t pause, not recording!', ToastAndroid.SHORT);
       return;
     }
 
@@ -98,7 +103,7 @@ class RecordModal extends Component {
   async resume() {
     const { paused } = this.state;
     if (!paused) {
-      console.log('Can\'t resume, not paused!');
+      ToastAndroid.show('Can\'t resume, not paused!', ToastAndroid.SHORT);
       return;
     }
 
@@ -113,7 +118,7 @@ class RecordModal extends Component {
   async stop() {
     const { recording } = this.state;
     if (!recording) {
-      console.log('Can\'t stop, not recording!');
+      ToastAndroid.show('Can\'t stop, not recording!', ToastAndroid.SHORT);
       return;
     }
 
@@ -142,7 +147,7 @@ class RecordModal extends Component {
 
       const sound = new Sound(audioPath, '', (error) => {
         if (error) {
-          console.log('failed to load the sound', error);
+          ToastAndroid.show('Load audio failed!', ToastAndroid.SHORT);
         }
       });
 
@@ -167,12 +172,12 @@ class RecordModal extends Component {
     } = this.state;
 
     if (recording) {
-      console.log('Already recording!');
+      ToastAndroid.show('Already recording!', ToastAndroid.SHORT);
       return;
     }
 
     if (!hasPermission) {
-      console.log('Can\'t record, no permission granted!');
+      ToastAndroid.show('Can\'t record, no permission granted!', ToastAndroid.SHORT);
       return;
     }
 
@@ -239,14 +244,14 @@ class RecordModal extends Component {
         <View style={styles.containerStyle}>
           <Text>Recording</Text>
           <View style={styles.controlsStyle}>
-            {this.renderButton('RECORD', () => { this.record(); }, recording)}
+            {this.renderButton('RECORD', this.record, recording)}
             {
               paused
-                ? this.renderButton('RESUME', () => { this.resume(); }, false)
-                : this.renderButton('PAUSE', () => { this.pause(); }, false)
+                ? this.renderButton('RESUME', this.resume, false)
+                : this.renderButton('PAUSE', this.pause, false)
             }
-            {this.renderButton('STOP', () => { this.stop(); }, stopped)}
-            {this.renderButton('PLAY', () => { this.play(); })}
+            {this.renderButton('STOP', this.stop, stopped)}
+            {this.renderButton('PLAY', this.play)}
             <Text style={styles.progressTextStyle}>{`${currentTime}s`}</Text>
           </View>
           <View style={styles.buttonsContainerStyle}>
